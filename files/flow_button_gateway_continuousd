@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=10
+
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+SERVICE_PID_FILE=/var/run/flow_button_gateway_continuous.pid
+
+start()
+{
+	start-stop-daemon -m -S -p $SERVICE_PID_FILE -b -x /usr/bin/flow_button_gateway_continuous.sh
+}
+
+stop()
+{
+	start-stop-daemon -K -p $SERVICE_PID_FILE -s 15
+	rm -f $SERVICE_PID_FILE
+}
+

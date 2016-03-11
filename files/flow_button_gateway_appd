@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=10
+
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+
+APP=flow_button_gateway_appd
+LOGFILE=/var/log/$APP
+
+start(){
+        service_start /usr/bin/$APP -l $LOGFILE
+}
+
+stop() {
+        service_stop /usr/bin/$APP
+}
+
