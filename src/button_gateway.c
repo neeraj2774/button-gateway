@@ -29,8 +29,8 @@
  */
 
 /**
- * @file flow_button_gateway.c
- * @brief Flow button gateway application at first waits for device to get provisioned, and then
+ * @file button_gateway.c
+ * @brief Button gateway application at first waits for device to get provisioned, and then
  *        starts polling button presses on constrained device and set the led on another. Also send
  *        flow messages to user for change in LED state. It uses FlowDeviceManagment Server SDK for
  *        communicating with lwm2m client on constrained devices and Client SDK for communicating
@@ -193,7 +193,7 @@ static void SetHeartbeatLed(bool status)
 }
 
 /**
- * @brief Prints flow_button_gateway_appd usage.
+ * @brief Prints button_gateway_appd usage.
  * @param *program holds application name.
  */
 static void PrintUsage(const char *program)
@@ -208,7 +208,7 @@ static void PrintUsage(const char *program)
 }
 
 /**
- * @brief Parses command line arguments passed to flow_button_gateway_appd.
+ * @brief Parses command line arguments passed to button_gateway_appd.
  * @return -1 in case of failure, 0 for printing help and exit, and 1 for success.
  */
 static int ParseCommandArgs(int argc, char *argv[], const char **fptr)
@@ -970,7 +970,7 @@ AwaServerSession *Server_EstablishSession(unsigned int port, const char *address
 }
 
 /**
- * @brief Flow button gateway application to poll a button press on constrained device,
+ * @brief Button gateway application to poll a button press on constrained device,
  *        and set the led on another. Also send a flow message to user for change in LED state.
  */
 int main(int argc, char **argv)
@@ -1001,7 +1001,7 @@ int main(int argc, char **argv)
 	AwaClientSession *clientSession = NULL;
 	AwaServerSession *serverSession = NULL;
 
-	LOG(LOG_INFO, "Flow Button Gateway Application");
+	LOG(LOG_INFO, "Button Gateway Application");
 	LOG(LOG_INFO, "------------------------\n");
 
 	clientSession = Client_EstablishSession(IPC_CLIENT_PORT, IP_ADDRESS);
@@ -1098,7 +1098,7 @@ int main(int argc, char **argv)
 		LOG(LOG_WARN, "Failed to free client session");
 	}
 
-	LOG(LOG_INFO, "Flow Button Gateway Application Failure");
+	LOG(LOG_INFO, "Button Gateway Application Failure");
 
 	return -1;
 }

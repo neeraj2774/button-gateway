@@ -6,7 +6,7 @@ STOP=10
 SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 
-APP=flow_button_gateway_appd
+APP=button_gateway_appd
 LOGFILE=/var/log/$APP
 
 start(){
