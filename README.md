@@ -1,2 +1,2 @@
-# flow_button_gateway
-flow button gateway application
+# button-gateway
+button gateway application
