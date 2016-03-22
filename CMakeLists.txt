@@ -5,7 +5,7 @@ PROJECT(button_gateway)
 # This will be extended to take the version from SCM
 # Version config can be simplified from 3.0+
 SET(button_gateway_VERSION_MAJOR 0)
-SET(button_gateway_VERSION_MINOR 3)
+SET(button_gateway_VERSION_MINOR 4)
 SET(button_gateway_VERSION_PATCH 0)
 SET(button_gateway_VERSION
     ${button_gateway_VERSION_MAJOR}.${button_gateway_VERSION_MINOR}.${button_gateway_VERSION_PATCH})

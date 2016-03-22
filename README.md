@@ -16,6 +16,11 @@ Gateway application serves two purposes:
 | "Digital Input" | 3200           | "Counter"      | 5501        |
 | "Actuation"     | 3311           | "On/Off"       | 5850        |
 
+## Revision History
+| Revision  | Changes from previous revision |
+| :----     | :------------------------------|
+| 0.9.0     | External Beta Trail Release    |
+
 ## Prerequisites
 Prior to running button gateway application, make sure that:
 - Awalwm2m client daemon(awa_clientd) is running.
