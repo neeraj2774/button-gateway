@@ -19,7 +19,7 @@ Gateway application serves two purposes:
 ## Revision History
 | Revision  | Changes from previous revision |
 | :----     | :------------------------------|
-| 0.9.0     | External Beta Trail Release    |
+| 0.9.0     | External Beta Trial Release    |
 
 ## Prerequisites
 Prior to running button gateway application, make sure that:
