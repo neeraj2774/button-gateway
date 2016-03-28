@@ -1054,6 +1054,7 @@ int main(int argc, char **argv)
 			bool cachedButtonState = buttonState;
 			while(true)
 			{
+				SetHeartbeatLed(false);
 				if (AwaServerSession_Process(serverSession, 1000 /* 1 second */) != AwaError_Success)
 				{
 					LOG(LOG_ERR, "AwaServerSession_Process() failed");
@@ -1067,6 +1068,7 @@ int main(int argc, char **argv)
 					PerformUpdate(clientSession, serverSession, buttonState);
 					cachedButtonState = buttonState;
 				}
+				SetHeartbeatLed(true);
 			}
 		}
 		else
