@@ -49,4 +49,11 @@ bool InitializeAndRegisterFlowDevice(void);
  */
 bool SendMessage(char *message);
 
+/**
+ * @brief Publish to DeviceStatus topic on Flow Cloud
+ * @param *message pointer to the message to be published
+ * @return true if published successfully
+ */
+bool PublishStatus(char *message);
+
 #endif	/* FLOW_INTERFACE_H*/
