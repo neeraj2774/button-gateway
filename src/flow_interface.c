@@ -203,6 +203,7 @@ static bool InitialiseLibFlow(const char *url,
 	return false;
 }
 
+
 /**
  * @brief Get user id to which the device is registered.
  * @param *userId pointer to device's user Id.
@@ -221,6 +222,40 @@ static bool GetUserId(char *userId)
 
 			temp = FlowUser_GetUserID(FlowDevice_RetrieveOwner(device));
 			strcpy(userId, temp);
+			FlowMemoryManager_Free(&memoryManager);
+			return true;
+		}
+		else
+		{
+			LOG(LOG_ERR, "Failed to get logged in device");
+		}
+		FlowMemoryManager_Free(&memoryManager);
+	}
+	else
+	{
+		LOG(LOG_ERR, "Failed to create memory manager");
+	}
+	return false;
+}
+
+/**
+ * @brief Get ID of the device
+ * @param *deviceId pointer to deviceId
+ * @return true if deviceId is retrieved successfully, else false.
+ */
+static bool GetDeviceId(char *deviceId)
+{
+	FlowMemoryManager memoryManager = FlowMemoryManager_New();
+
+	if (memoryManager)
+	{
+		FlowDevice device = FlowClient_GetLoggedInDevice(memoryManager);
+		if (device)
+		{
+			FlowID temp;
+
+			temp = FlowDevice_GetDeviceID(device);
+			strcpy(deviceId, temp);
 			FlowMemoryManager_Free(&memoryManager);
 			return true;
 		}
@@ -276,6 +311,45 @@ bool SendMessage(char *message)
 }
 
 /**
+ * @brief Publish to DeviceStatus topic on Flow Cloud
+ * @param *message pointer to the message to be published
+ * @return true if published successfully
+ */
+bool PublishStatus(char *message)
+{
+	char deviceId[MAX_SIZE];
+
+	GetDeviceId(deviceId);
+
+	FlowMemoryManager memoryManager = FlowMemoryManager_New();
+
+	if (memoryManager)
+	{
+		if (FlowMessaging_PublishToDeviceTopic("DeviceStatus",
+												(FlowID)deviceId,
+												"text/plain",
+												message,
+												strlen(message),
+												MESSAGE_EXPIRY_TIMEOUT))
+		{
+			LOG(LOG_INFO, "Status published = %s",message);
+			FlowMemoryManager_Free(&memoryManager);
+			return true;
+		}
+		else
+		{
+			LOG(LOG_ERR, "Failed to publish status");
+		}
+		FlowMemoryManager_Free(&memoryManager);
+	}
+	else
+	{
+		LOG(LOG_ERR, "Failed to create memory manager");
+	}
+	return false;
+}
+
+/**
  * @brief Initialize libflow and register as a device.
  * @return true if device registration is successful else false.
  */
@@ -304,4 +378,3 @@ bool InitializeAndRegisterFlowDevice(void)
 	}
 	return false;
 }
-

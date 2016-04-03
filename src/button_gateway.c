@@ -288,7 +288,7 @@ static bool ConstructAndSendFlowMessage(const bool ledState)
 				timeNow.tm_year + 1900,
 				ledState?ON_STR:OFF_STR);
 
-		success = SendMessage(data);
+		success = SendMessage(data) && PublishStatus(data);
 		Flow_MemFree((void **)&data);
 	}
 	else
@@ -1104,4 +1104,3 @@ int main(int argc, char **argv)
 
 	return -1;
 }
-
