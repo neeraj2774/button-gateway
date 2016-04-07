@@ -1,6 +1,6 @@
 # Button Gateway application
 
-## Overview
+ Overview
 Button gateway application runs on Ci40 which acts as a gateway for MikroE boards. One of the MikroE boards acts as a client which holds button resource, and another one also acts as a client which holds led resource. Gateway application observes button resource value, and whenever there is a change in its value, gateway application gets a notification for the change, and take further actions. After receiving notification for button change, gateway application
 
 - Updates the led resource value, which was created by led client, to on or off, depending upon button events.
